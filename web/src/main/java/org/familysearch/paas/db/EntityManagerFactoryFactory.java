@@ -18,7 +18,7 @@ import org.familysearch.sas.schema.Sas;
 public class EntityManagerFactoryFactory {
 
   private static final Logger LOG = LoggerFactory.getLogger(EntityManagerFactoryFactory.class);
-  private static final String SAS_OBJECT_NAME = "paas-aws-platform-demo-app-dev-database-db";
+  private static final String SAS_OBJECT_NAME = "paas-aws-platform-demo-app-gauntc-dev-database-db";
   private static final ObjectRequester OBJECT_REQUESTER = new ObjectRequester();
 
   public EntityManagerFactory createEntityManagerFactory() throws IOException {
