@@ -19,7 +19,7 @@ deploy:
       instance_class: db.t1.micro
       path_to_flyway_schema: web/src/main/resources/db/migration
       tags:
-        council:
+        council: badCouncil
     beanstalk:
       type: beanstalk
       path_to_artifact: web/target/paas-aws-platform-demo-app-gauntc-web.war
