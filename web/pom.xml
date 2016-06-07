@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>paas-aws-platform-demo-app-gauntc-web</artifactId>
+  <name>ET-paas-platform-demo-app-web</name>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+
+  <parent>
+    <groupId>org.familysearch.paas</groupId>
+    <artifactId>paas-aws-platform-demo-app-gauntc</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <build>
+    <finalName>paas-aws-platform-demo-app-gauntc-web</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.cargo</groupId>
+        <artifactId>cargo-maven2-plugin</artifactId>
+        <version>1.4.3</version>
+        <configuration>
+          <container>
+            <containerId>tomcat7x</containerId>
+            <zipUrlInstaller>
+              <url>http://archive.apache.org/dist/tomcat/tomcat-7/v7.0.30/bin/apache-tomcat-7.0.30.zip
+              </url>
+            </zipUrlInstaller>
+            <timeout>600000</timeout>
+          </container>
+          <configuration>
+            <properties>
+              <cargo.jvmargs>-Xdebug -Xnoagent -Djava.compiler=NONE
+                -Xrunjdwp:transport=dt_socket,server=y,suspend=${cargo.debug.startup},address=5005
+              </cargo.jvmargs>
+              <cargo.logging>medium</cargo.logging>
+              <cargo.servlet.port>8080</cargo.servlet.port>
+            </properties>
+            <home>${project.build.directory}/tomcat7x</home>
+          </configuration>
+          <deployables>
+            <deployable>
+              <properties>
+                <context>ROOT</context>
+              </properties>
+            </deployable>
+          </deployables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.familysearch.ws</groupId>
+        <artifactId>maven-familysearch-api-plugin</artifactId>
+        <version>${api-familysearch-rt.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>assemble</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <configFile>src/conf/enunciate-config.xml</configFile>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+
+    <dependency>
+      <groupId>org.familysearch.ws</groupId>
+      <artifactId>api-familysearch-rt</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.familysearch.config</groupId>
+          <artifactId>fs-config</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-configuration</groupId>
+      <artifactId>commons-configuration</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.h2database</groupId>
+      <artifactId>h2</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>log4j-over-slf4j</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.familysearch.sas</groupId>
+      <artifactId>sas-client</artifactId>
+    </dependency>
+
+  </dependencies>
+
+</project>

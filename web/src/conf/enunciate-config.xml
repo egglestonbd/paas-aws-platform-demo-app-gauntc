@@ -1,0 +1,10 @@
+<enunciate label="platform-demo-app">
+  <webapp mergeWebXML="web.xml"/>
+  <modules>
+    <csharp disabled="true"/>
+    <amf disabled="true"/>
+    <spring-app>
+      <springImport file="spring/custom-spring.xml"/>
+    </spring-app>
+  </modules>
+</enunciate>

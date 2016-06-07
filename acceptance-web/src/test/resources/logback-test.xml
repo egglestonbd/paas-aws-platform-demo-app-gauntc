@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%d{"yyyy-MM-dd HH:mm:ss,SSSZ",GMT} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.familysearch.paas" level="WARN" additivity="false">
+    <appender-ref ref="STDOUT" />
+  </logger>
+
+  <logger name="org.familysearch.qa.testcommons" level="WARN">
+    <appender-ref ref="STDOUT" />
+  </logger>
+
+  <logger name="org.familysearch.qa" level="WARN">
+    <appender-ref ref="STDOUT" />
+  </logger>
+
+    <logger name="org.familysearch.qa.LogListener" level="INFO">
+    <appender-ref ref="STDOUT" />
+  </logger>
+
+  <root level="INFO">
+    <appender-ref ref="STDOUT"/>
+  </root>
+</configuration>

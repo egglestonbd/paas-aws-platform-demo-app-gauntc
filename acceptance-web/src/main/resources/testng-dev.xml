@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="PaaSAWSPlatformDemoAppTestSuite" verbose="1" parallel="methods" thread-count="5">
+
+    <!--***** Set Parameters to be passed to methods *****-->
+    <!--<parameter name="environment" value="${environment}" />-->
+
+    <!--***** Define test Configuration below  *****-->
+    <test name="demo-at">
+        <!--***** Define Test Groups - this is not a requirement only if you are using groups *****-->
+        <groups>
+            <!--* Set what groups to run or exclude *-->
+            <run>
+                <include name="acceptance"/>
+                <exclude name="broken"/>
+                <exclude name="construction"/>
+            </run>
+        </groups>
+        <!--***** Set what Java class you want to include in your test code  *****-->
+        <classes>
+            <class name="org.familysearch.paas.Acceptance"/>
+        </classes>
+        <!--<packages>-->
+           <!--<package name="org.familysearch.paas"/>-->
+        <!--</packages>-->
+    </test>
+</suite>
