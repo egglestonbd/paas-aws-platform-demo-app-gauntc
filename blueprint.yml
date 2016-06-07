@@ -1,0 +1,45 @@
+version: 1.0
+name: paas-aws-platform-demo-app-gauntc
+build:
+- name: maven-build
+  type: maven
+validate:
+- name: acceptance-tests
+  type: war
+  war_path: acceptance-web/target/paas-aws-platform-demo-app-gauntc-acceptance-web.war
+  validation_systems:
+  - dev
+deploy:
+  dev:
+    database:
+      type: rds_postgres
+      location: development-fh5-useast1-primary-1
+      database_name: zoo_animals
+      multi_az: false
+      instance_class: db.t1.micro
+      path_to_flyway_schema: web/src/main/resources/db/migration
+    beanstalk:
+      type: beanstalk
+      path_to_artifact: web/target/paas-aws-platform-demo-app-gauntc-web.war
+      location: development-fh5-useast1-primary-1
+      stack_name: 64bit Amazon Linux 2014.09 v1.2.0 running Tomcat 7 Java 7
+      instance_type: t2.micro
+      autoscale_options:
+        min_instances: 2
+        max_instances: 2
+      elb_options:
+        connection_draining_timeout: 600
+        health_check: /healthcheck/heartbeat
+      in_place_update:
+        fanout: 50
+      references:
+      - database
+      routing:
+        type: http_traffic
+        url_path: /paas-aws-platform-demo-app-gauntc
+        url_replace: /
+        domain: stage.familysearch.org
+        public: true
+      experiments:
+      - beanstrap_test.sh_experiment
+      - councilNameCheckExperiment
