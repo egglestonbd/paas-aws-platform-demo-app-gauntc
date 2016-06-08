@@ -30,8 +30,8 @@ deploy:
       elb_options:
         connection_draining_timeout: 600
         health_check: /healthcheck/heartbeat
-      in_place_update:
-        fanout: 50
+#      in_place_update:
+#        fanout: 50
       references:
       - database
       routing:
