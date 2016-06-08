@@ -19,7 +19,7 @@ deploy:
       instance_class: db.t1.micro
       path_to_flyway_schema: web/src/main/resources/db/migration
       tags:
-        council: badCouncil
+        council:
     beanstalk:
       type: beanstalk
       path_to_artifact: web/target/paas-aws-platform-demo-app-gauntc-web.war
@@ -27,7 +27,7 @@ deploy:
       stack_name: 64bit Amazon Linux 2014.09 v1.2.0 running Tomcat 7 Java 7
       instance_type: t2.micro
       autoscale_options:
-        min_instances: 2
+        min_instances: 1
         max_instances: 2
       elb_options:
         connection_draining_timeout: 600
