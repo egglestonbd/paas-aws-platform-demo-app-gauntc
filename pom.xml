@@ -9,7 +9,7 @@
   <parent>
     <groupId>org.familysearch</groupId>
     <artifactId>root</artifactId>
-    <version>1.10.b84</version>
+    <version>1.10.b85</version>
   </parent>
   <modules>
     <module>web</module>
