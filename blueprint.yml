@@ -19,7 +19,7 @@ deploy:
       instance_class: db.t1.micro
       path_to_flyway_schema: web/src/main/resources/db/migration
       tags:
-        council: badCouncil
+        taggity-tag: foo
       experiments:
       - councilNameCheckExperiment
     beanstalk:
@@ -45,7 +45,7 @@ deploy:
         domain: stage.familysearch.org
         public: true
       tags:
-        council: badCouncil
+        taggity-tag: foo
       experiments:
       - beanstrap_test.sh_experiment
       - councilNameCheckExperiment
