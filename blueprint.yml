@@ -18,10 +18,8 @@ deploy:
       multi_az: false
       instance_class: db.t1.micro
       path_to_flyway_schema: web/src/main/resources/db/migration
-      tags:
-        taggity-tag: foo
-      experiments:
-      - councilNameCheckExperiment
+      # experiments:
+      # - councilNameCheckExperiment
     beanstalk:
       type: beanstalk
       path_to_artifact: web/target/paas-aws-platform-demo-app-gauntc-web.war
@@ -34,8 +32,6 @@ deploy:
       elb_options:
         connection_draining_timeout: 600
         health_check: /healthcheck/heartbeat
-#      in_place_update:
-#        fanout: 50
       references:
       - database
       routing:
@@ -44,8 +40,6 @@ deploy:
         url_replace: /
         domain: stage.familysearch.org
         public: true
-      tags:
-        taggity-tag: foo
       experiments:
       - beanstrap_test.sh_experiment
-      - councilNameCheckExperiment
+      # - councilNameCheckExperiment
